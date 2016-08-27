@@ -1,17 +1,4 @@
-// ```
-// recipe.model.js
-// (c) 2016 David Newman
-// david.r.niciforovic@gmail.com
-// recipe.model.js may be freely distributed under the MIT license
-// ```
 
-// */app/models/recipe.model.js*
-
-// # Recipe Model
-
-// Note: MongoDB will autogenerate an _id for each Recipe object created
-
-// Grab the Mongoose module
 import mongoose from 'mongoose';
 
 // Create a `schema` for the `Todo` object
