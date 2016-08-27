@@ -31,6 +31,8 @@ import {Todo} from './todo/todo.component';
 // Import Recipes component
 import {Recipes} from './recipes/recipes.component';
 
+import {Login} from './login/login.component';
+
 /*
  * App Component
  * Top Level Component
@@ -45,64 +47,69 @@ import {Recipes} from './recipes/recipes.component';
   pipes: [],
   // Load our main `Sass` file into our `app` `component`
   styleUrls: [require('!style!css!sass!../sass/main.scss')],
-  template: `
-    <md-content>
-      <md-toolbar color="primary">
-          <span>{{ name }}</span>
-          <span class="fill"></span>
-          <button md-button router-active [routerLink]=" ['Index'] ">
-            Index
-          </button>
-          <button md-button router-active [routerLink]=" ['Home'] ">
-            Home
-          </button>
-          <button md-button router-active [routerLink]=" ['Todo'] ">
-            Todo
-          </button>
-          <button md-button router-active [routerLink]=" ['Recipes'] ">
-            Recipes
-          </button>
-          <button md-button router-active [routerLink]=" ['About'] ">
-            About
-          </button>
-      </md-toolbar>
+  template: require('./app.html'),
+  // template: `
+  //   <md-content>
+  //     <md-toolbar color="primary">
+  //         <span>{{ name }}</span>
+  //         <span class="fill"></span>
+  //         <button md-button router-active [routerLink]=" ['Index'] ">
+  //           Index
+  //         </button>
+  //         <button md-button router-active [routerLink]=" ['Home'] ">
+  //           Home
+  //         </button>
+  //         <button md-button router-active [routerLink]=" ['Todo'] ">
+  //           Todo
+  //         </button>
+  //         <button md-button router-active [routerLink]=" ['Recipes'] ">
+  //           Recipes
+  //         </button>
+  //         <button md-button router-active [routerLink]=" ['About'] ">
+  //           About
+  //         </button>
+  //     </md-toolbar>
 
-      <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading">
-      </md-progress-bar>
+  //     <md-progress-bar mode="indeterminate" color="primary" *ngIf="loading">
+  //     </md-progress-bar>
 
-      <router-outlet></router-outlet>
+  //     <router-outlet></router-outlet>
 
-      <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
+  //     <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
 
-      <footer>
-        <img [src]="angularLogo" width="7%">
-        <span>Angular 2 MEAN Webpack Starter by <a [href]="url">@datatype_void</a></span>
-      </footer>
-    </md-content>
-  `
+  //     <footer>
+  //       <img [src]="angularLogo" width="7%">
+  //       <span>Angular 2 MEAN Webpack Starter by <a [href]="url">@datatype_void</a></span>
+  //     </footer>
+  //   </md-content>
+  // `
 })
 @RouteConfig([
-  { path: '/', name: 'Index', component: Home, useAsDefault: true },
-  { path: '/home',  name: 'Home',  component: Home },
-  { path: '/todo', component: Todo, name: 'Todo' },
-  { path: '/redux', component: Recipes, name: 'Recipes' },
+  // { path: '/', name: 'Index', component: Home, useAsDefault: true },
+  // { path: '/home',  name: 'Home',  component: Home },
+  // { path: '/todo', component: Todo, name: 'Todo' },
+  // { path: '/redux', component: Recipes, name: 'Recipes' },
+  {path: '/login', component: Login, name: 'Login'},
   // Async load a component using Webpack's require with
   // es6-promise-loader and webpack `require`
-  { path: '/about', name: 'About', loader: () => require('es6-promise!./about')('About') },
+  // { path: '/about', name: 'About', loader: () => require('es6-promise!./about')('About') },
 ])
 export class App {
-  angularLogo = 'assets/img/angular-logo.png';
-  name = 'Angular 2 MEAN Webpack Starter';
-  url = 'https://twitter.com/datatype_void';
-
+  public sesion: Boolean;
+  public correo: String;
   // Pass in our application `state`
   // Alternative to using `redux`
-  constructor(public appState: AppState) {}
-
+  constructor(public appState: AppState) {
+    this.sesion = false;
+  }
   // Fire off upon initialization
   ngOnInit() {
-
     console.log('Initial App State', this.appState.state);
+    
+  }
+
+  changeStatus(){
+    this.sesion = true;
   }
 }
 
