@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 let usersSchema = new mongoose.Schema({
   nombre: {type: String},
+  userId: {type: String},
+  fotoPerfil: {type: String},
   sexo: {type: String},
   fechaNac: {type: Date},
   email: {type: String},
